@@ -18,4 +18,5 @@ int main(void)
 	delete base;
 	base = NULL;
 	identify(*base);
+	return (0);
 }
