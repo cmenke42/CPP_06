@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+				"${workspaceFolder}/ex01/includes"
+            ]
+        }
+    ],
+    "version": 4
+}

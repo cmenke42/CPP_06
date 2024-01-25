@@ -1,4 +1,4 @@
-NAME			:= convert
+NAME			:= a.out
 CXX				:= c++
 RM				:= rm -f
 
@@ -13,10 +13,8 @@ INCLUDES		:= -I ${INCLUDES_DIR}
 # All source files
 SRCS := \
     main.cpp \
-	ScalarConverter.cpp \
-	Parser.cpp \
-	ParserUtils.cpp \
-	Output.cpp \
+	Base.cpp \
+	utils.cpp \
 
 # Object files corresponding to each source file
 OBJS := $(patsubst %.cpp, ${OBJDIR}/%.o, ${SRCS})
@@ -30,8 +28,7 @@ CXXFLAGS += -std=c++98 -pedantic
 # Development flags
 CXXFLAGS += -g -O0
 # CXXFLAGS += -fsanitize=thread
-CXXFLAGS += -fsanitize=address
-# CXXFLAGS += -fsanitize=undefined
+# CXXFLAGS += -fsanitize=address
 
 # Add includes
 CXXFLAGS += ${INCLUDES}
