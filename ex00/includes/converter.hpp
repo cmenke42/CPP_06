@@ -9,32 +9,36 @@
 
 // declarations
 template <typename T>
-void convertStringAndSetFirstType(const std::string& input, Output& output, void (Output::*setter)(T));
+void    convertStringAndSetFirstType(const std::string& input, Output& output, void (Output::*setter)(T));
 
 template <typename From>
-void convertInitialToOtherAndSet(From value, Output& output);
+void    convertInitialToOtherAndSet(From value, Output& output);
 
 template <typename From>
-bool isInfinityOrNaN(From value);
+bool    isInfinityOrNaN(From value);
 
 template <typename T>
-void setOutputForPseudoLiteral(Output& output, T value);
-void setOutputForPseudoLiteral(Output& output, float value);
-void setOutputForPseudoLiteral(Output& output, double value);
+void    setOutputForPseudoLiteral(Output& output, T value);
+void    setOutputForPseudoLiteral(Output& output, float value);
+void    setOutputForPseudoLiteral(Output& output, double value);
 
 template <typename From>
-bool isWithinCharRange(From value);
+bool    isWithinCharRange(From value);
 
 template <typename From>
-bool isWithinIntRange(From value);
-bool isWithinIntRange(float value);
-bool isWithinIntRange(double value);
+bool    isWithinIntRange(From value);
+bool    isWithinIntRange(float value);
+bool    isWithinIntRange(double value);
+
+int     sign(int value);
+float   sign(float value);
+double  sign(double value);
 
 template <typename From>
-bool isWithinFloatRange(From value);
+bool    isWithinFloatRange(From value);
 
 template <typename From>
-bool isWithinDoubleRange(From value);
+bool    isWithinDoubleRange(From value);
 
 /* ------------------------ Convert and Set initial type from input ------------------- */
 template <typename T>
@@ -127,15 +131,33 @@ bool isWithinIntRange(From value)
 bool isWithinIntRange(float value)
 {
     return (value >= static_cast<float>(std::numeric_limits<int>::min()))
-        && (value <= static_cast<float>(std::numeric_limits<int>::max()));
+            && (value <= static_cast<float>(std::numeric_limits<int>::max()))
+            && (sign(value) == sign(static_cast<int>(value)));
 }
 
 // Overload for double
 bool isWithinIntRange(double value)
 {
     return (value >= static_cast<double>(std::numeric_limits<int>::min()))
-        && (value <= static_cast<double>(std::numeric_limits<int>::max()));
+            && (value <= static_cast<double>(std::numeric_limits<int>::max()))
+            && (sign(value) == sign(static_cast<int>(value)));
 }
+
+int sign(int value)
+{
+    return (value > 0) - (value < 0);
+}
+
+float sign(float value)
+{
+    return (value > 0.0f) - (value < 0.0f);
+}
+
+double sign(double value)
+{
+    return (value > 0.0) - (value < 0.0);
+}
+
 /* --- End of integer types --- */
 
 // float
