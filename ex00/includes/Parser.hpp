@@ -3,7 +3,9 @@
 
 class Output;
 
-#include <string>
+# include <string>
+
+# define SINGLE_QUOTE_LITERAL "'''"
 
 class Parser
 {
@@ -47,12 +49,17 @@ class Parser
 		bool				_end;
 		int					_fractionalPartSize;
 	
+		void				_parseCharacters(const std::string& str);
 		void				_parseOneChar(const char c);
 		void 				_handleNone(const char c);
 		void 				_handleChar(const char c);
 		void 				_handleInt(const char c);
 		void 				_handleDouble(const char c);
 		void 				_handlePseudoLiteral(const std::string& str, Output& output);
+
+		//helpers
+		void 				_setSingleQuoteLiteral();
+		void 				_setFractionSize(Output& output);
 };
 
 #endif /* PARSER_HPP_INCLUDED */

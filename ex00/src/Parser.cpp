@@ -57,6 +57,30 @@ Parser::~Parser() {}
 
 void Parser::parse(const std::string& str, Output& output)
 {
+	if (str == SINGLE_QUOTE_LITERAL)
+    {
+        _setSingleQuoteLiteral();
+        return;
+    }
+
+	_parseCharacters(str);
+
+	if (this->_value.empty())
+		throw Parser::ParserException();
+	else if (this->_state == Parser::PSEUDO)
+		_handlePseudoLiteral(str, output);
+	else
+		_setFractionSize(output);
+}
+
+void Parser::_setSingleQuoteLiteral()
+{
+    this->_value = "'";
+    this->_state = Parser::CHAR;
+}
+
+void Parser::_parseCharacters(const std::string& str)
+{
 	std::string::const_iterator it = str.begin();
 	while (it < str.end())
 	{
@@ -67,27 +91,26 @@ void Parser::parse(const std::string& str, Output& output)
 		if (this->_state == Parser::PSEUDO)
 			break ;
 	}
-	if (this->_state == Parser::PSEUDO)
-	{
-		_handlePseudoLiteral(str, output);
-		return ;
-	}
-	if (this->_fractionalPartSize > 0)
-		output.setFractionalPartSize(this->_fractionalPartSize);
-	else
-		output.setFractionalPartSize(1);
 }
 
 void Parser::_parseOneChar(const char c)
 {
 	switch (this->_state)
 	{
-		case Parser::NONE: _handleNone(c); break;
-		case Parser::CHAR: _handleChar(c); break;
-		case Parser::INT: _handleInt(c); break;
-		case Parser::DOUBLE: _handleDouble(c); break;
-		default: throw Parser::ParserException();
+		case Parser::NONE:		_handleNone(c); break;
+		case Parser::CHAR:		_handleChar(c); break;
+		case Parser::INT:		_handleInt(c); break;
+		case Parser::DOUBLE:	_handleDouble(c); break;
+		default: 				throw Parser::ParserException();
 	}
+}
+
+void Parser::_setFractionSize(Output& output)
+{
+    if (this->_fractionalPartSize > 0)
+        output.setFractionalPartSize(this->_fractionalPartSize);
+    else
+        output.setFractionalPartSize(1);
 }
 
 Parser::States  Parser::getState() const

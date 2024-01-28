@@ -34,7 +34,7 @@ void Parser::_handleChar(const char c)
 {
 	if (c == '\'')
 		this->_end = true;
-	else if (std::isprint(c))
+	else if (std::isprint(c) && this->_value.empty())
 		this->_value += c;
 	else
 		throw Parser::ParserException();
