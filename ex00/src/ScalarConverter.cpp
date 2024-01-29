@@ -26,6 +26,9 @@ void ScalarConverter::convert(std::string str)
 	output.print();
 }
 
+/**
+ * @throws std::runtime_error -> If the input string cannot be converted.
+ */
 static void processState(Parser& parser, Output& output)
 {
     switch (parser.getState())
@@ -35,17 +38,17 @@ static void processState(Parser& parser, Output& output)
             convertInitialToOtherAndSet(output.getChar(), output);
             break;
         case Parser::INT:
-            convertStringAndSetFirstType<int>(parser.getValue(), output, &Output::setInt);
+            convertStringAndSetFirstValue<int>(parser.getValue(), output, &Output::setInt);
             convertInitialToOtherAndSet(output.getInt(), output);
             break;
         case Parser::FLOAT:
-            convertStringAndSetFirstType<float>(parser.getValue(), output, &Output::setFloat);
+            convertStringAndSetFirstValue<float>(parser.getValue(), output, &Output::setFloat);
             // fall through
         case Parser::PSEUDO_FLOAT:
             convertInitialToOtherAndSet(output.getFloat(), output);
             break;
         case Parser::DOUBLE:
-            convertStringAndSetFirstType<double>(parser.getValue(), output, &Output::setDouble);
+            convertStringAndSetFirstValue<double>(parser.getValue(), output, &Output::setDouble);
             // fall through
         case Parser::PSEUDO_DOUBLE:
             convertInitialToOtherAndSet(output.getDouble(), output);

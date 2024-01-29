@@ -9,7 +9,7 @@
 
 // declarations
 template <typename T>
-void    convertStringAndSetFirstType(const std::string& input, Output& output, void (Output::*setter)(T));
+void    convertStringAndSetFirstValue(const std::string& input, Output& output, void (Output::*setter)(T));
 
 template <typename From>
 void    convertInitialToOtherAndSet(From value, Output& output);
@@ -40,9 +40,22 @@ bool    isWithinFloatRange(From value);
 template <typename From>
 bool    isWithinDoubleRange(From value);
 
-/* ------------------------ Convert and Set initial type from input ------------------- */
+/* ------------------------ Convert and Set initial value from input ------------------- */
+
+/**
+ * @brief This function converts an input string to a specified type.
+ *
+ * And if succesful it updates the first value of an output object with the provided setter.
+ *
+ * @tparam T The type to convert the input string to.
+ * @param input The string to convert.
+ * @param output The output object to update.
+ * @param setter The member function of the Output class to use for setting the first value.
+ *
+ * @throws std::runtime_error -> If the input string cannot be converted.
+ */
 template <typename T>
-void convertStringAndSetFirstType(const std::string& input, Output& output, void (Output::*setter)(T))
+void convertStringAndSetFirstValue(const std::string& input, Output& output, void (Output::*setter)(T))
 {
     T value;
     std::istringstream iss(input);
@@ -53,6 +66,7 @@ void convertStringAndSetFirstType(const std::string& input, Output& output, void
 }
 
 /* ------------------------ Convert to other types -------------------------------- */
+
 template <typename From>
 void convertInitialToOtherAndSet(From value, Output& output)
 {
@@ -72,6 +86,7 @@ void convertInitialToOtherAndSet(From value, Output& output)
 }
 
 /* ------------------------ Infinity and NaN Checker ---------------------------------------- */
+
 template <typename From>
 bool isInfinityOrNaN(From value)
 {
@@ -90,6 +105,10 @@ bool isInfinityOrNaN(From value)
 }
 
 /* ------------------------ Output Setters ---------------------------------------- */
+
+/**
+ * @throws std::runtime_error -> Always throws, as this function is for unsupported types.
+ */
 template <typename T>
 void setOutputForPseudoLiteral(Output& output, T value)
 {
@@ -120,6 +139,7 @@ bool isWithinCharRange(From value)
 }
 
 /* --- For integer types --- */
+
 template <typename From>
 bool isWithinIntRange(From value)
 {

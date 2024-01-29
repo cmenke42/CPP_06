@@ -55,13 +55,21 @@ Parser& Parser::operator=(const Parser& other)
 
 Parser::~Parser() {}
 
+/**
+ * @brief Parses the input string and updates the output object accordingly.
+ *
+ * @param str Input string
+ * @param output The output object to update based on the parsed input.
+ *
+ * @throws Parser::ParserException -> in case of wrong input
+ */
 void Parser::parse(const std::string& str, Output& output)
 {
 	if (str == SINGLE_QUOTE_LITERAL)
-    {
-        _setSingleQuoteLiteral();
-        return;
-    }
+	{
+		_setSingleQuoteLiteral();
+		return;
+	}
 
 	_parseCharacters(str);
 
@@ -79,6 +87,9 @@ void Parser::_setSingleQuoteLiteral()
     this->_state = Parser::CHAR;
 }
 
+/**
+ * @throws Parser::ParserException -> in case of wrong input
+ */
 void Parser::_parseCharacters(const std::string& str)
 {
 	std::string::const_iterator it = str.begin();
@@ -93,6 +104,9 @@ void Parser::_parseCharacters(const std::string& str)
 	}
 }
 
+/**
+ * @throws Parser::ParserException -> in case of wrong input
+ */
 void Parser::_parseOneChar(const char c)
 {
 	switch (this->_state)

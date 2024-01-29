@@ -4,6 +4,9 @@
 
 #include "Output.hpp"
 
+/**
+ * @throws Parser::ParserException in case of wrong input
+ */
 void Parser::_handleNone(const char c)
 {
 	if (c == '\'')
@@ -30,6 +33,9 @@ void Parser::_handleNone(const char c)
 	}
 }
 
+/**
+ * @throws Parser::ParserException in case of wrong input
+ */
 void Parser::_handleChar(const char c)
 {
 	if (c == '\'')
@@ -40,6 +46,9 @@ void Parser::_handleChar(const char c)
 		throw Parser::ParserException();
 }
 
+/**
+ * @throws Parser::ParserException in case of wrong input
+ */
 void Parser::_handleInt(const char c)
 {
 	if (c == '.')
@@ -55,6 +64,9 @@ void Parser::_handleInt(const char c)
 		throw Parser::ParserException();
 }
 
+/**
+ * @throws Parser::ParserException in case of wrong input
+ */
 void Parser::_handleDouble(const char c)
 {
 	if (c == 'f')
@@ -71,6 +83,9 @@ void Parser::_handleDouble(const char c)
 		throw Parser::ParserException();
 }
 
+/**
+ * @throws Parser::ParserException in case of wrong input
+ */
 void Parser::_handlePseudoLiteral(const std::string& str, Output& output)
 {
 	if (str == "nan")
