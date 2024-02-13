@@ -73,10 +73,10 @@ void Parser::parse(const std::string& str, Output& output)
 
 	_parseCharacters(str);
 
-	if (this->_value.empty())
-		throw Parser::ParserException();
-	else if (this->_state == Parser::PSEUDO)
+	if (this->_state == Parser::PSEUDO)
 		_handlePseudoLiteral(str, output);
+	else if (this->_value.empty())
+		throw Parser::ParserException();
 	else
 		_setFractionSize(output);
 }

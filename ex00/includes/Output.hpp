@@ -16,30 +16,31 @@ class Output
 
 		void  	setFractionalPartSize(int size);
 
-		char 	getChar() const;
-		int 	getInt() const;
+		char		getChar() const;
+		int 		getInt() const;
 		float 	getFloat() const;
 		double 	getDouble() const;
 
-		bool	isDoubleSet() const;
+		bool		isDoubleSet() const;
 
 		void  	print() const;
+
+	private:
+		bool 		_valueSet;
+		char 		_char;
+		bool 		_charSet;
+		int 		_int;
+		bool 		_intSet;
+		int 		_fractionalPartSize;
+		float 	_float;
+		bool 		_floatSet;
+		double 	_double;
+		bool 		_doubleSet;
+
 		void  	printChar() const;
 		void  	printInt() const;
 		void  	printFloat() const;
 		void  	printDouble() const;
-
-	private:
-		bool 	_valueSet;
-		char 	_char;
-		bool 	_charSet;
-		int 	_int;
-		bool 	_intSet;
-		int 	_fractionalPartSize;
-		float 	_float;
-		bool 	_floatSet;
-		double 	_double;
-		bool 	_doubleSet;
 };
 
 #endif /* OUTPUT_HPP_INCLUDED */

@@ -92,9 +92,9 @@ void Parser::_handlePseudoLiteral(const std::string& str, Output& output)
 		output.setDouble(std::numeric_limits<double>::quiet_NaN());
 	else if (str == "nanf")
 		output.setFloat(std::numeric_limits<float>::quiet_NaN());
-	else if (str == "inf")
+	else if (str == "inf" || str == "+inf")
 		output.setDouble(std::numeric_limits<double>::infinity());
-	else if (str == "inff")
+	else if (str == "inff" || str == "+inff")
 		output.setFloat(std::numeric_limits<float>::infinity());
 	else if (str == "-inf")
 		output.setDouble(-std::numeric_limits<double>::infinity());
