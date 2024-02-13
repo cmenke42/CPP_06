@@ -31,7 +31,7 @@ CXXFLAGS += -std=c++98 -pedantic
 CXXFLAGS += -g -O0
 # CXXFLAGS += -fsanitize=thread
 CXXFLAGS += -fsanitize=address
-# CXXFLAGS += -fsanitize=undefined
+CXXFLAGS += -fsanitize=undefined
 
 # Add includes
 CXXFLAGS += ${INCLUDES}

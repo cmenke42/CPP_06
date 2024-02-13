@@ -14,9 +14,9 @@ int main(void)
 	identify(base);
 	std::cout << "Identifying reference: " << std::endl;
 	identify(*base);
-	std::cout << "Identifying nonsense:" << std::endl;
+	std::cout << "Identifying NULL:" << std::endl;
 	delete base;
 	base = NULL;
-	identify(*base);
+	identify(base);
 	return (0);
 }
