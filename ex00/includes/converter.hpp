@@ -30,10 +30,6 @@ bool    isWithinIntRange(From value);
 bool    isWithinIntRange(float value);
 bool    isWithinIntRange(double value);
 
-int     sign(int value);
-float   sign(float value);
-double  sign(double value);
-
 template <typename From>
 bool    isWithinFloatRange(From value);
 
@@ -82,7 +78,7 @@ void convertInitialToOtherAndSet(From value, Output& output)
     if (isWithinFloatRange(value))
         output.setFloat(static_cast<float>(value));
     if (isWithinDoubleRange(value))
-        output.setDouble(static_cast<float>(value));
+        output.setDouble(static_cast<double>(value));
 }
 
 /* ------------------------ Infinity and NaN Checker ---------------------------------------- */
@@ -139,43 +135,23 @@ bool isWithinCharRange(From value)
 }
 
 /* --- For integer types --- */
-
 template <typename From>
 bool isWithinIntRange(From value)
 {
     return (value < 0 && value >= std::numeric_limits<int>::min())
-        || (value > 0 && value <= std::numeric_limits<int>::max());
+        || (value >= 0 && value <= std::numeric_limits<int>::max());
 }
 
-// Overload for float
 bool isWithinIntRange(float value)
 {
-    return (value >= static_cast<float>(std::numeric_limits<int>::min()))
-            && (value <= static_cast<float>(std::numeric_limits<int>::max()))
-            && (sign(value) == sign(static_cast<int>(value)));
+    return value >= static_cast<float>(std::numeric_limits<int>::min()) &&
+           value <= static_cast<float>(std::numeric_limits<int>::max());
 }
 
-// Overload for double
 bool isWithinIntRange(double value)
 {
-    return (value >= static_cast<double>(std::numeric_limits<int>::min()))
-            && (value <= static_cast<double>(std::numeric_limits<int>::max()))
-            && (sign(value) == sign(static_cast<int>(value)));
-}
-
-int sign(int value)
-{
-    return (value > 0) - (value < 0);
-}
-
-float sign(float value)
-{
-    return (value > 0.0f) - (value < 0.0f);
-}
-
-double sign(double value)
-{
-    return (value > 0.0) - (value < 0.0);
+    return value >= static_cast<double>(std::numeric_limits<int>::min()) &&
+           value <= static_cast<double>(std::numeric_limits<int>::max());
 }
 
 /* --- End of integer types --- */

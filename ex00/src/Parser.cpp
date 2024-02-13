@@ -68,10 +68,12 @@ void Parser::parse(const std::string& str, Output& output)
 	if (str == SINGLE_QUOTE_LITERAL)
 	{
 		_setSingleQuoteLiteral();
-		return;
+	}
+	else
+  {
+		_parseCharacters(str);
 	}
 
-	_parseCharacters(str);
 
 	if (this->_state == Parser::PSEUDO)
 		_handlePseudoLiteral(str, output);
