@@ -35,17 +35,17 @@ class Parser
 
 		Parser();
 		Parser(const Parser& other);
-		Parser& 			operator=(const Parser& other);
+		Parser& operator=(const Parser& other);
 		~Parser();
 
-		void  				parse(const std::string& str, Output& output);
+		void  							parse(const std::string& str, Output& output);
 
-		Parser::States  	getState() const;
+		Parser::States  		getState() const;
 		const std::string&	getValue() const;
 
 	private:
-		States				_state;
-		std::string 		_value;
+		States			_state;
+		std::string	_value;
 		bool				_end;
 		int					_fractionalPartSize;
 	

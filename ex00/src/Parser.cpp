@@ -28,10 +28,10 @@ const char* Parser::ParserException::what() const throw()
 
 /* -----------------------------  Parser class ----------------------------- */
 Parser::Parser()
-	  : _state(NONE),
-	    _value(""),
-		_end(false),
-		_fractionalPartSize(0)
+	  	: _state(NONE),
+	    	_value(""),
+				_end(false),
+				_fractionalPartSize(0)
 	    
 {
 }
@@ -85,8 +85,8 @@ void Parser::parse(const std::string& str, Output& output)
 
 void Parser::_setSingleQuoteLiteral()
 {
-    this->_value = "'";
-    this->_state = Parser::CHAR;
+  this->_value = "'";
+  this->_state = Parser::CHAR;
 }
 
 /**
@@ -115,18 +115,18 @@ void Parser::_parseOneChar(const char c)
 	{
 		case Parser::NONE:		_handleNone(c); break;
 		case Parser::CHAR:		_handleChar(c); break;
-		case Parser::INT:		_handleInt(c); break;
+		case Parser::INT:			_handleInt(c); break;
 		case Parser::DOUBLE:	_handleDouble(c); break;
-		default: 				throw Parser::ParserException();
+		default: 							throw Parser::ParserException();
 	}
 }
 
 void Parser::_setFractionSize(Output& output)
 {
-    if (this->_fractionalPartSize > 0)
-        output.setFractionalPartSize(this->_fractionalPartSize);
-    else
-        output.setFractionalPartSize(1);
+  if (this->_fractionalPartSize > 0)
+    output.setFractionalPartSize(this->_fractionalPartSize);
+  else
+    output.setFractionalPartSize(1);
 }
 
 Parser::States  Parser::getState() const

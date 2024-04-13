@@ -6,11 +6,11 @@
 
 Output::Output()
       : _valueSet(false),
-	    _charSet(false),
-	    _intSet(false),
-	    _fractionalPartSize(0),
-	    _floatSet(false),
-	    _doubleSet(false)
+	    	_charSet(false),
+	    	_intSet(false),
+	    	_fractionalPartSize(0),
+	    	_floatSet(false),
+	    	_doubleSet(false)
 {
 }
 

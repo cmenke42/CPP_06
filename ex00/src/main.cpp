@@ -1,11 +1,11 @@
-#include <iostream>
-
 #include "ScalarConverter.hpp"
 
-#include <limits>
 #include <iostream>
-#include <iomanip>
 
+
+
+// #include <limits>
+// #include <iomanip>
 // printConversions()
 // {
 // 	std::cout << "Float: " << std::endl;
@@ -20,6 +20,8 @@
 // std::cout << std::fixed << std::setprecision(750) 
 //               << std::numeric_limits<double>::max() << std::endl;
 // }
+
+
 
 int main(int argc, char **argv)
 {
@@ -37,6 +39,8 @@ int main(int argc, char **argv)
 	}
 	ScalarConverter::convert(argv[1]);
 	// printConversions();
+
+	// ScalarConverter converter;
 
 	return (0);
 }
