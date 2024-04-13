@@ -26,7 +26,6 @@ CXXFLAGS += -std=c++98 -pedantic
 
 # Development flags
 CXXFLAGS += -g -O0
-# CXXFLAGS += -fsanitize=thread
 CXXFLAGS += -fsanitize=address
 CXXFLAGS += -fsanitize=undefined
 

@@ -6,12 +6,12 @@ class Data;
 
 Serializer::Serializer() {}
 
-Serializer::Serializer(Serializer const &other)
+Serializer::Serializer(const Serializer& other)
 {
 	*this = other;
 }
 
-Serializer &Serializer::operator=(Serializer const &other)
+Serializer& Serializer::operator=(const Serializer& other)
 {
 	if (this != &other)
 	{
@@ -33,5 +33,5 @@ Data* Serializer::deserialize(uintptr_t raw)
 {
 	if (!raw)
 		return (NULL);
-	return (reinterpret_cast<Data *>(raw));
+	return (reinterpret_cast<Data* >(raw));
 }
